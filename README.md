@@ -1,26 +1,27 @@
-# Lista Virtualizada
+# Virtualized List Example
 
-### Preview
+This project demonstrates how to implement a virtualized list in JavaScript. Virtualization is a technique used to optimize the performance of large lists by only rendering the items that are visible in the viewport, along with a buffer of items above and below the visible area.
+
+## Preview
+
 [screen-capture (1).webm](https://github.com/user-attachments/assets/5ef3c889-31eb-4e4e-97be-eda2782674f0)
 
-Este projeto demonstra como implementar uma lista virtualizada em JavaScript. A virtualização é uma técnica usada para otimizar o desempenho ao lidar com listas grandes, renderizando apenas os itens que estão visíveis na janela de visualização, juntamente com um buffer de itens acima e abaixo da área visível.
+## Table of Contents
 
-## Índice
+- [Getting Started](#getting-started)
+- [How It Works](#how-it-works)
+- [Code Explanation](#code-explanation)
+  - [Element Selection](#element-selection)
+  - [Configuration Variables](#configuration-variables)
+  - [Rendering Function](#rendering-function)
+  - [Scroll Event Handler](#scroll-event-handler)
+  - [Initialization](#initialization)
+- [Mathematical Rules](#mathematical-rules)
+- [Conclusion](#conclusion)
 
-- [Introdução](#introdução)
-- [Como Funciona](#como-funciona)
-- [Explicação do Código](#explicação-do-código)
-  - [Seleção dos Elementos](#seleção-dos-elementos)
-  - [Variáveis de Configuração](#variáveis-de-configuração)
-  - [Função de Renderização](#função-de-renderização)
-  - [Manipulador de Evento de Rolagem](#manipulador-de-evento-de-rolagem)
-  - [Inicialização](#inicialização)
-- [Regras Matemáticas](#regras-matemáticas)
-- [Conclusão](#conclusão)
+## Getting Started
 
-## Introdução
-
-Para começar, inclua a seguinte estrutura HTML no seu projeto:
+To get started, simply include the following HTML structure in your project:
 
 ```html
 <div id="container" style="height: 500px; overflow: auto;">
@@ -28,41 +29,41 @@ Para começar, inclua a seguinte estrutura HTML no seu projeto:
 </div>
 ```
 
-Adicione o código JavaScript fornecido neste repositório e personalize as variáveis `itemHeight`, `bufferSize` e `numberOfItems` conforme necessário.
+Add the JavaScript code provided in this repository, and customize the `itemHeight`, `bufferSize`, and `numberOfItems` as needed.
 
-## Como Funciona
+## How It Works
 
-Esta implementação cria uma lista virtualizada que renderiza de forma eficiente apenas os itens visíveis na janela de visualização, juntamente com um buffer de itens adicionais para proporcionar uma rolagem suave. A ideia principal é calcular os índices de início e fim dos itens a serem renderizados com base na posição atual de rolagem e ajustar a posição dos itens renderizados usando uma transformação `translateY`.
+This implementation creates a virtualized list that efficiently renders only the items that are visible in the viewport, along with a buffer of additional items to provide smooth scrolling. The key idea is to calculate the start and end indices of the items to be rendered based on the current scroll position and then adjust the position of the rendered items using a `translateY` transformation.
 
-## Explicação do Código
+## Code Explanation
 
-### Seleção dos Elementos
+### Element Selection
 
 ```javascript
 const container = document.getElementById("container");
 const viewport = document.getElementById("viewport");
 ```
 
-- `container`: O elemento que contém a lista rolável.
-- `viewport`: O elemento onde os itens da lista serão renderizados.
+- `container`: The element that contains the scrollable list.
+- `viewport`: The element where the list items will be rendered.
 
-### Variáveis de Configuração
+### Configuration Variables
 
 ```javascript
-const itemHeight = 50; // Altura de cada item
-const bufferSize = 20; // Número de itens a renderizar acima e abaixo da área visível
-const numberOfItems = 1000; // Número total de itens
+const itemHeight = 50; // Height of each item
+const bufferSize = 20; // Number of items to render above and below the visible area
+const numberOfItems = 1000; // Total number of items
 ```
 
-- `itemHeight`: A altura de cada item na lista (em pixels).
-- `bufferSize`: O número de itens a serem renderizados acima e abaixo da área visível para proporcionar uma rolagem suave.
-- `numberOfItems`: O número total de itens na lista.
+- `itemHeight`: The height of each item in the list (in pixels).
+- `bufferSize`: The number of items to render above and below the visible area to provide smooth scrolling.
+- `numberOfItems`: The total number of items in the list.
 
-### Função de Renderização
+### Rendering Function
 
 ```javascript
 function renderItems(startIndex, endIndex) {
-  viewport.innerHTML = ""; // Limpa a área de visualização
+  viewport.innerHTML = ""; // Clear the viewport
   for (let i = startIndex; i < endIndex; i++) {
     const item = document.createElement("div");
     item.className = "item";
@@ -73,11 +74,11 @@ function renderItems(startIndex, endIndex) {
 }
 ```
 
-- **Limpeza da Área de Visualização**: A área de visualização é limpa antes de renderizar novos itens.
-- **Criação de Itens**: Os itens são criados dinamicamente e adicionados à área de visualização.
-- **Ajuste de Posição**: A transformação `translateY` ajusta a posição vertical da área de visualização com base no `startIndex`.
+- **Clearing the Viewport**: The viewport is cleared before rendering new items.
+- **Creating Items**: Items are dynamically created and added to the viewport.
+- **Position Adjustment**: The `translateY` transformation adjusts the vertical position of the viewport based on the `startIndex`.
 
-### Manipulador de Evento de Rolagem
+### Scroll Event Handler
 
 ```javascript
 function onScroll(e) {
@@ -97,33 +98,33 @@ function onScroll(e) {
 }
 ```
 
-- **Cálculo do `startIndex`**: O índice do primeiro item a ser renderizado é baseado na posição de rolagem e na altura do item.
-- **Cálculo do `endIndex`**: O índice do último item a ser renderizado é baseado na área visível e no tamanho do buffer.
-- **Renderização dos Itens**: Chama a função `renderItems` com os índices calculados.
+- **Calculating `startIndex`**: The index of the first item to render is based on the scroll position and the item height.
+- **Calculating `endIndex`**: The index of the last item to render is based on the visible area and buffer size.
+- **Rendering Items**: Calls `renderItems` with the calculated indices.
 
-### Inicialização
+### Initialization
 
 ```javascript
 container.addEventListener("scroll", onScroll);
 onScroll();
 ```
 
-- **Listener de Rolagem**: A função `onScroll` é chamada sempre que o container é rolado.
-- **Renderização Inicial**: A função `onScroll` é chamada uma vez durante a inicialização para renderizar o conjunto inicial de itens.
+- **Scroll Listener**: The `onScroll` function is called whenever the container is scrolled.
+- **Initial Rendering**: The `onScroll` function is called once during initialization to render the initial set of items.
 
-## Regras Matemáticas
+## Mathematical Rules
 
-- **Cálculo do `startIndex`**:
-  - `Math.floor(scrollTop / itemHeight)`: Converte a posição de rolagem em um índice de item.
-  - `- bufferSize`: Subtrai o tamanho do buffer para renderizar itens adicionais acima da área visível.
-  - `Math.max(..., 0)`: Garante que o índice inicial não seja negativo.
-- **Cálculo do `endIndex`**:
+- **Start Index Calculation**:
+  - `Math.floor(scrollTop / itemHeight)`: Converts the scroll position into an item index.
+  - `- bufferSize`: Subtracts the buffer size to render additional items above the visible area.
+  - `Math.max(..., 0)`: Ensures the start index is not negative.
+- **End Index Calculation**:
 
-  - `startIndex + bufferSize * 2 + Math.ceil(container.clientHeight / itemHeight)`: Calcula o índice final com base na área visível e no tamanho do buffer.
-  - `Math.min(..., numberOfItems)`: Garante que o índice final não ultrapasse o número total de itens.
+  - `startIndex + bufferSize * 2 + Math.ceil(container.clientHeight / itemHeight)`: Calculates the end index based on the visible area and buffer size.
+  - `Math.min(..., numberOfItems)`: Ensures the end index does not exceed the total number of items.
 
-- **Transformação `translateY`**: Ajusta a posição dos itens renderizados com base no `startIndex` multiplicado pela altura do item.
+- **`translateY` Transformation**: Adjusts the position of the rendered items based on the `startIndex` multiplied by the item height.
 
-## Conclusão
+## Conclusion
 
-Esta implementação de lista virtualizada é uma maneira eficiente de lidar com listas grandes em aplicações web, reduzindo a carga de renderização ao exibir apenas os itens que estão visíveis na janela de visualização. Compreendendo os conceitos-chave e as regras matemáticas, você pode personalizar e expandir esta implementação conforme suas necessidades.
+This virtualized list implementation is an efficient way to handle large lists in web applications, reducing the rendering load by only displaying the items that are visible in the viewport. By understanding the key concepts and mathematical rules, you can customize and extend this implementation to suit your needs.
