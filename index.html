@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtualização Básica usando JS</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="viewport"></div>
+    </div>
+  </body>
+  <style>
+    #container {
+      height: 900px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      position: relative;
+    }
+
+    .item {
+      height: 50px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #spacer {
+      position: absolute;
+      width: 100%;
+      top: 0;
+    }
+  </style>
+  <script src="./assets/virtualized.js"></script>
+</html>
