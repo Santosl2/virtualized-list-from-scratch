@@ -1,4 +1,7 @@
-# Exemplo de Lista Virtualizada
+# Lista Virtualizada
+
+### Preview
+[screen-capture (1).webm](https://github.com/user-attachments/assets/5ef3c889-31eb-4e4e-97be-eda2782674f0)
 
 Este projeto demonstra como implementar uma lista virtualizada em JavaScript. A virtualização é uma técnica usada para otimizar o desempenho ao lidar com listas grandes, renderizando apenas os itens que estão visíveis na janela de visualização, juntamente com um buffer de itens acima e abaixo da área visível.
 
