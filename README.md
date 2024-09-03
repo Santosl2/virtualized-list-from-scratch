@@ -6,6 +6,22 @@ This project demonstrates how to implement a virtualized list in JavaScript. Vir
 
 [screen-capture (1).webm](https://github.com/user-attachments/assets/5ef3c889-31eb-4e4e-97be-eda2782674f0)
 
+## Benefits
+
+List virtualization offers several advantages, including:
+
+- Improved Performance: By rendering only the visible items, virtualization reduces the initial load time and minimizes the DOM manipulation required during scrolling, resulting in a faster and smoother user experience.
+
+- Reduced Memory Usage: Virtualization keeps only a limited number of items in the DOM, which reduces memory usage, particularly when dealing with large datasets.
+
+## Limitations
+
+While list virtualization provides substantial benefits, it does have some limitations:
+
+- Complexity: Implementing list virtualization can add complexity to the codebase, especially when dealing with dynamic item sizes, variable data loading, or complex item interactions.
+
+- Breaks Browsers Ctrl+F Functionality: Since list virtualization keeps most of the items in a virtual state, the browser’s Ctrl+F (Find) functionality cannot directly search for invisible elements. To overcome this, you can implement a custom search component that first searches your data, finds matches, calculates their position, and scrolls to them when requested.
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
