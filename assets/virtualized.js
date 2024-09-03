@@ -1,3 +1,4 @@
+console.log("Virtualized.js loaded");
 const container = document.getElementById("container");
 const viewport = document.getElementById("viewport");
 
@@ -5,7 +6,7 @@ const itemHeight = 50; // Height of each item
 const bufferSize = 20; // Number of items to render above and below the visible area
 const numberOfItems = 100000; // Total number of items
 
-console.log("Renderizando", numberOfItems, "itens");
+console.log("Rendering", numberOfItems, "itens");
 let startIndex = 0;
 
 function renderItems(startIndex, endIndex) {
